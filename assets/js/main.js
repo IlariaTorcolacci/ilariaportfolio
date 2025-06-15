@@ -119,25 +119,53 @@
     let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
     let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
 
-    let initIsotope;
-    imagesLoaded(isotopeItem.querySelector('.isotope-container'), function() {
-      initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
-        itemSelector: '.isotope-item',
-        layoutMode: layout,
-        filter: filter,
-        sortBy: sort
-      });
-    });
+    let initIsotope; // Dichiarata qui per essere accessibile
+    let portfolioContainer = isotopeItem.querySelector('.isotope-container');
 
+    // Funzione per inizializzare/distruggere Isotope in base alla larghezza dello schermo
+    function handleIsotopeLayout() {
+      if (window.innerWidth >= 768) { // Per schermi grandi (es. tablet e desktop)
+        if (!initIsotope) { // Inizializza solo se non è già inizializzato
+          imagesLoaded(portfolioContainer, function() {
+            initIsotope = new Isotope(portfolioContainer, {
+              itemSelector: '.isotope-item',
+              layoutMode: layout,
+              filter: filter,
+              sortBy: sort
+            });
+          });
+        }
+      } else { // Per schermi piccoli (mobile)
+        if (initIsotope) { // Distruggi Isotope se è attivo
+          initIsotope.destroy();
+          initIsotope = null; // Resetta l'istanza
+          // Rimuovi gli stili inline che Isotope potrebbe aver lasciato
+          portfolioContainer.removeAttribute('style');
+          document.querySelectorAll('.isotope-item').forEach(item => {
+            item.removeAttribute('style');
+          });
+        }
+      }
+    }
+
+    // Chiamala al caricamento della pagina
+    window.addEventListener('load', handleIsotopeLayout);
+    // Chiamala ogni volta che la finestra viene ridimensionata
+    window.addEventListener('resize', handleIsotopeLayout);
+
+    // --- Codice esistente per i filtri Isotope (lascia invariato) ---
     isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
       filters.addEventListener('click', function() {
-        isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
-        this.classList.add('filter-active');
-        initIsotope.arrange({
-          filter: this.getAttribute('data-filter')
-        });
-        if (typeof aosInit === 'function') {
-          aosInit();
+        // Controlla se Isotope è attivo prima di tentare di riordinare
+        if (initIsotope) {
+          isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
+          this.classList.add('filter-active');
+          initIsotope.arrange({
+            filter: this.getAttribute('data-filter')
+          });
+          if (typeof aosInit === 'function') {
+            aosInit();
+          }
         }
       }, false);
     });
