@@ -2445,4 +2445,13 @@ section,
   }
 }
 
+
+.profile-img {
+  width: 250px; /* Larghezza desiderata, puoi regolarla */
+  height: auto; /* L'altezza si adatta proporzionalmente alla larghezza */
+  border-radius: 15px; /* Questo creerà angoli arrotondati. Regola il valore in pixel per più o meno arrotondamento */
+  display: block; /* Per centrare l'immagine se necessario in seguito */
+  margin: 0 auto; /* Per centrare l'immagine all'interno della sua colonna */
+}
+
 }
