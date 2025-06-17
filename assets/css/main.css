@@ -96,8 +96,8 @@ h6 {
 .bio-text {
   color: #717070; /* Questo è il grigio chiaro per tutto il testo normale nel <h6> */
   line-height: 1.5; 
-  margin-top: 15px;
-  margin-bottom: 25px;
+  margin-top: 5px;
+  margin-bottom: 10px;
 }
 
 /* Stile per i link all'interno del bio-text (es. @Polimi, Jiangnan University) */
@@ -469,6 +469,7 @@ button {
   align-items: center;
   font-size: 16px;
   font-family: var(--button-font);
+  margin-bottom: 50px;
  }
 
 button:hover {
@@ -1140,7 +1141,7 @@ section,
   color: var(--heading-color);
   font-size: 26px;
   font-weight: 700;
-  margin-top: 20px;
+  margin-top: 80px;
   margin-bottom: 20px;
 }
 
