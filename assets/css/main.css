@@ -461,7 +461,7 @@ button {
   cursor: pointer;
   font-weight: 400;
   transition: all 0.2s;
-  padding: 3px 12px;
+  padding: 10px 12px;
   border-radius: 15px;
   background: #edecec;
   border: 1px solid transparent;
@@ -499,14 +499,16 @@ buttonnoarrow {
   cursor: pointer;
   font-weight: 600;
   transition: all 0.2s;
-  padding: 10px 12px; /* Padding specificato */
+  padding: 5px 40px; /* Padding specificato */
   border-radius: 15px; /* Bordi arrotondati */
   background: #edecec;
   border: 1px solid transparent;
   display: flex; /* Mantiene il display flex per allineamento futuro se aggiungi altro */
-  align-items: center;
+  align-items: top;
   font-size: 10px; /* Dimensione del font specificata */
   font-family: var(--button-font); 
+  margin-bottom: 0%;
+  margin-top: 0%;
 }
 
 buttonnoarrow:hover {
@@ -527,6 +529,25 @@ button:hover svg {
 
 buttonnoarrow:active {
   transform: scale(0.95);
+}
+
+/* Stili per i bottoni con solo icona (Instagram, LinkedIn) */
+.button-icon-only {
+  width: 40px; /* Larghezza fissa uguale all'altezza */
+  height: 40px; /* L'altezza è ereditata da custom-button, ma la ripetiamo per chiarezza */
+  padding: 10px 12px; /* <--- FONDAMENTALE: Rimuovi padding interno per far centrare l'icona */
+  border-radius: 50%; /* Rendi circolare */
+  justify-content: center; /* <--- ESSENZIALE: Centra orizzontalmente l'icona */
+}
+
+.button-icon-only i {
+  font-size: 30px; /* <--- SUGGERITO: Una dimensione ideale per le icone in un bottone da 40px */
+  color: black;
+  transition: color 0.2s;
+}
+
+.button-icon-only:hover i {
+  color: white;
 }
 
 /*--------------------------------------------------------------
@@ -565,18 +586,18 @@ buttonnoarrow:active {
   flex-wrap: nowrap;
   list-style: none;
   justify-content: center;
-  gap:15px;
+  gap: 15px; /* Spazio uniforme tra i bottoni */
   padding: 0;
-  margin: 0;
+  margin: 20px auto 0; /* Margine superiore e centratura orizzontale */
   font-size: 16px;
   font-weight: 400;
-  align-items:center;
+  align-items: center; /* <--- ESSENZIALE: Allinea verticalmente gli elementi LI */
 }
 
-/* Questa regola ora aggiungerà il margine a destra di OGNI li */
+/* Rimuovi o imposta a 0 eventuali margini/padding sui singoli LI per non interferire con 'gap' */
 .page-title .breadcrumbs ol li {
-  margin-right: 0; /* QUESTA È LA REGOLA PER LA DISTANZA DI 30PX */
-  padding-left: 0; /* Rimuovi il padding-left esistente se presente */
+  margin: 0;
+  padding: 0;
 }
 
 .page-title .breadcrumbs ol li:last-child {
