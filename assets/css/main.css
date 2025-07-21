@@ -470,6 +470,8 @@ button {
   font-size: 16px;
   font-family: var(--button-font);
   margin-bottom: 50px;
+  height: 40px; /* <--- Imposta un'altezza fissa, ad esempio 40px */
+  box-sizing: border-box;
  }
 
 button:hover {
@@ -535,13 +537,13 @@ buttonnoarrow:active {
 .button-icon-only {
   width: 40px; /* Larghezza fissa uguale all'altezza */
   height: 40px; /* L'altezza è ereditata da custom-button, ma la ripetiamo per chiarezza */
-  padding: 10px 12px; /* <--- FONDAMENTALE: Rimuovi padding interno per far centrare l'icona */
-  border-radius: 50%; /* Rendi circolare */
+  padding:0; /* <--- FONDAMENTALE: Rimuovi padding interno per far centrare l'icona */
+  border-radius: 15px; /* Rendi circolare */
   justify-content: center; /* <--- ESSENZIALE: Centra orizzontalmente l'icona */
 }
 
 .button-icon-only i {
-  font-size: 30px; /* <--- SUGGERITO: Una dimensione ideale per le icone in un bottone da 40px */
+  font-size: 20px; /* <--- SUGGERITO: Una dimensione ideale per le icone in un bottone da 40px */
   color: black;
   transition: color 0.2s;
 }
