@@ -60,6 +60,33 @@
     });
   });
 
+  // --- INIZIO: CODICE AGGIUNTO PER ATTIVARE IL DROPDOWN AL CLICK SU DESKTOP ---
+// Questo codice gestisce il click sull'elemento genitore <li> (dove si trova 'Project')
+// Non usa '.toggle-dropdown' ma l'intero link <a> per funzionare anche su desktop.
+document.querySelectorAll('.navmenu .dropdown > a').forEach(dropdownLink => {
+    dropdownLink.addEventListener('click', function(e) {
+        // Solo su schermi grandi (desktop) impediamo il default e gestiamo il toggle.
+        // Sui dispositivi mobile, l'altro blocco gestisce l'apertura.
+        if (!document.body.classList.contains('mobile-nav-active')) {
+            e.preventDefault(); 
+            const parentLi = this.closest('li.dropdown');
+            if (parentLi) {
+                // Toggla la classe 'dropdown-active' sull'elemento <li>
+                parentLi.classList.toggle('dropdown-active');
+            }
+            e.stopImmediatePropagation();
+        }
+    });
+});
+// Chiudi il dropdown cliccando in qualsiasi punto al di fuori di esso
+document.addEventListener('click', function(e) {
+    const openDropdown = document.querySelector('.navmenu .dropdown.dropdown-active');
+    if (openDropdown && !openDropdown.contains(e.target)) {
+        openDropdown.classList.remove('dropdown-active');
+    }
+});
+// --- FINE: CODICE AGGIUNTO ---
+
   /**
    * Preloader
    */
